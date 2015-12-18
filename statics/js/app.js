@@ -149,12 +149,18 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     var json = angular.toJson($localStorage.todo),
         encryptData = sjcl.encrypt("you will never know", json);
     $("#todoStorage").val(encryptData);
+    $("#todoStorage").slimScroll({
+      height: '430px'
+    });
     $("#systemOpsDialog .modal-footer").hide();
     $("#systemOpsDialog").modal('show');
   };
 
   $scope.import = function () {
     $("#todoStorage").val('');
+    $("#todoStorage").slimScroll({
+      height: '430px'
+    });
     $("#systemOpsDialog .modal-footer").show();
     $("#systemOpsDialog").modal('show');
   };

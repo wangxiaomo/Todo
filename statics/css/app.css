@@ -16,3 +16,4 @@ i.fa { cursor:pointer; }
 .add-todo-item:focus { box-shadow:none; }
 .system-ops { width:10%; float:left; }
 #todo-network { width:500px; height:600px; float:left; }
+#todoStorage { width: 100% !important; }
