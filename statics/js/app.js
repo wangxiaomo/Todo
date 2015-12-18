@@ -146,8 +146,9 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   };
 
   $scope.export = function () {
-    var json = angular.toJson($localStorage.todo);
-    $("#todoStorage").val(json);
+    var json = angular.toJson($localStorage.todo),
+        encryptData = sjcl.encrypt("you will never know", json);
+    $("#todoStorage").val(encryptData);
     $("#systemOpsDialog .modal-footer").hide();
     $("#systemOpsDialog").modal('show');
   };
@@ -159,9 +160,10 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   };
 
   $scope.sync = function () {
-    var json = $("#todoStorage").val();
+    var encryptData = $("#todoStorage").val();
     try{
-      var items = angular.fromJson(json);
+      var decryptData = sjcl.decrypt("you will never know", encryptData),
+        items = angular.fromJson(decryptData);
       if(_.isObject(items) !== true){
         throw new Error("Not an illegal Object");
       }
