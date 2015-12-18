@@ -1,12 +1,25 @@
 * { margin:0; padding:0; }
 i.fa { cursor:pointer; }
-.app { width:650px; float:left; }
+ 
+@media screen and (min-width:601px) {
+  .app { width:650px; float:left; }
+  #todo-network { width:500px; height:600px; float:left; }
+  .list-group-item .todo-info { float:left; width:70%; }
+  .list-group-item .time-info { float:left; width:20%; }
+  .list-group-item .item-ops { float:right; width:10%; }
+}
+
+@media screen and (max-width:600px) {
+  .app { width:100%; }
+  #todo-network { display:none; }
+  .list-group-item .todo-info { float:left; width:50%; }
+  .list-group-item .time-info { float:left; width:40%; }
+  .list-group-item .item-ops { float:right; width:10%; }
+}
+
 .list-group-item { height: 40px; }
 .list-group-item-data:hover { opacity:0.8; background:#eee; }
 .list-group-item span { margin-left:5px; }
-.list-group-item .todo-info { float:left; width:70%; }
-.list-group-item .time-info { float:left; width:20%; }
-.list-group-item .item-ops { float:right; width:10%; }
 .list-group-item.selected-item span,
 .list-group-item.selected-item .time-info { text-decoration:line-through; color:#777;}
 .add-todo-item {
@@ -15,5 +28,4 @@ i.fa { cursor:pointer; }
 }
 .add-todo-item:focus { box-shadow:none; }
 .system-ops { width:10%; float:left; }
-#todo-network { width:500px; height:600px; float:left; }
 #todoStorage { width: 100% !important; }
