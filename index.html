@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ngTodo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Todo List</title>
+  <link rel="shortcut icon" href="icon.png" />
+  <link rel="bookmark" href="icon.png" />
+  <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://libs.useso.com/js/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./statics/css/vis.min.css" />
+  <link rel="stylesheet" href="./statics/css/app.css" />
+  <script src="http://libs.useso.com/js/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://libs.useso.com/js/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="http://libs.useso.com/js/angular.js/1.2.9/angular.min.js"></script>
+  <script src="./statics/js/ngStorage.min.js"></script>
+  <script src="./statics/js/vis.min.js"></script>
+  <script src="./statics/js/app.js"></script>
+</head>
+<body data-ng-controller="TodoControl">
+  <div class="app">
+    <div class="todo-list panel panel-default">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-hd">
+          <input type="text" class="form-control add-todo-item" placeholder="Focus on me!!!" data-ng-keyup="todoEdit($event)" />
+          <div class="system-ops">
+            <i class="fa fa-share-alt" data-ng-click="export()"></i>
+            <i class="fa fa-upload" data-ng-click="import()"></i>
+          </div>
+        </li>
+        <li data-ng-repeat="item in todoItems"
+            class="list-group-item list-group-item-data {{item.dom_class}} item-{{item.id}}">
+          <div class="todo-info">
+            <input type="checkbox" data-ng-model="item.checked"
+              data-ng-disabled="item.checked" data-ng-click="checkItem(item.id)"/>
+            <span>{{item.content}}</span>
+          </div>
+          <div class="time-info">
+            {{item.timestamp | date:'yyyy-MM-dd HH:mm'}}
+          </div>
+          <div class="item-ops">
+            <i class="fa fa-trash" data-ng-click="removeItem(item.id)"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="todo-network"></div>
+  <!-- import/export modal dialog -->
+  <div class="modal fade" id="systemOpsDialog" tabindex="-1" role="dialog" aria-labelledby="systemOpsDialogLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="systemOpsDialogLabel">SystemOps</h4>
+        </div>
+        <div class="modal-body">
+          <textarea id="todoStorage" class="form-control" rows="20"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-ng-click="sync()">Sync</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
