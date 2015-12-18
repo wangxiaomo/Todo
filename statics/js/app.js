@@ -63,6 +63,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   };
 
   var todoItemsVisNetwork = function () {
+    if(window.screen.width < 601) return;
     // vis todo network
     var nodes = [
       {id: "root", label: "ROOT"},
@@ -151,7 +152,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
         encryptData = sjcl.encrypt("you will never know", json);
     $("#todoStorage").val(encryptData);
     $("#todoStorage").slimScroll({
-      height: '430px'
+      height: '200px'
     });
     $("#systemOpsDialog .modal-footer").hide();
     $("#systemOpsDialog").modal('show');
@@ -160,7 +161,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   $scope.import = function () {
     $("#todoStorage").val('');
     $("#todoStorage").slimScroll({
-      height: '430px'
+      height: '200px'
     });
     $("#systemOpsDialog .modal-footer").show();
     $("#systemOpsDialog").modal('show');

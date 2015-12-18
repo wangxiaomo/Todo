@@ -34,12 +34,14 @@
         <li data-ng-repeat="item in todoItems"
             class="list-group-item list-group-item-data {{item.dom_class}} item-{{item.id}}">
           <div class="todo-info">
-            <input type="checkbox" data-ng-model="item.checked"
-              data-ng-disabled="item.checked" data-ng-click="checkItem(item.id)"/>
+            <div class="checkbox-wrapper">
+              <input type="checkbox" data-ng-model="item.checked"
+                data-ng-disabled="item.checked" data-ng-click="checkItem(item.id)"/>
+            </div>
             <span>{{item.content}}</span>
           </div>
-          <div class="time-info">
-            {{item.timestamp | date:'yyyy-MM-dd HH:mm'}}
+          <div class="time-info" alt="{{item.timestamp | date:'yyyy-MM-dd HH:mm'}}">
+            {{item.timestamp | date:'MM-dd HH:mm'}}
           </div>
           <div class="item-ops">
             <i class="fa fa-trash" data-ng-click="removeItem(item.id)"></i>
@@ -58,7 +60,7 @@
           <h4 class="modal-title" id="systemOpsDialogLabel">SystemOps</h4>
         </div>
         <div class="modal-body">
-          <textarea id="todoStorage" class="form-control" rows="20"></textarea>
+          <textarea id="todoStorage" class="form-control"></textarea>
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-ng-click="sync()">Sync</button>
