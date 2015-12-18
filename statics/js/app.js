@@ -125,6 +125,13 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     syncTodoItems();
   };
 
+  $scope.unchecked = function (id) {
+    var item = $localStorage.todo[id];
+    item.checked = false;
+    item.dom_class = "";
+    syncTodoItems();
+  }
+
   $scope.removeItem = function (id) {
     delete $localStorage.todo[id];
     $(".item-" + id).remove();

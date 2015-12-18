@@ -44,6 +44,7 @@
             {{item.timestamp | date:'MM-dd HH:mm'}}
           </div>
           <div class="item-ops">
+            <i class="fa fa-undo" data-ng-click="unchecked(item.id)"></i>
             <i class="fa fa-trash" data-ng-click="removeItem(item.id)"></i>
           </div>
         </li>
