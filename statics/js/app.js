@@ -161,12 +161,13 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   $scope.sync = function () {
     var json = $("#todoStorage").val();
     try{
-        var items = angular.fromJson(json);
-        if(_.isObject(items) !== true){
-          throw new Error("Not an illegal Object");
-        }
-        $localStorage.todo = items;
-        syncTodoItems();
+      var items = angular.fromJson(json);
+      if(_.isObject(items) !== true){
+        throw new Error("Not an illegal Object");
+      }
+      $localStorage.todo = items;
+      syncTodoItems();
+      $("#systemOpsDialog").modal('hide');
     }catch(e){
       alert("JSON format error!");
     }
