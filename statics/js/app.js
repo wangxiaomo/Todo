@@ -105,6 +105,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   todoItemsVisNetwork();
 
   var syncTodoItems = function () {
+    $localStorage.todo = $localStorage.todo || {};
     var data = $localStorage.todo,
         sortedItems = sortTodoItems(_.values(data));
     $scope.todoItems = displayPrepare(sortedItems);
