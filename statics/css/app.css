@@ -11,19 +11,24 @@ i.fa { cursor:pointer; }
   .todo-info .checkbox-wrapper input[type=checkbox] { margin:2px 0 0; }
   .todo-info span { width:90%; float: left; display:inline-block; }
   .item-ops i { padding:1px; }
+  .add-todo-item { width:90%; }
+  .system-ops { width:10%; float:left; }
 }
 
 @media screen and (max-width:600px) {
   * { font-size:12px; }
+  i.fa { font-size:15px; }
   .app { width:100%; }
   #todo-network { display:none; }
-  .list-group-item .todo-info { float:left; width:65%; }
+  .list-group-item .todo-info { float:left; width:63%; }
   .list-group-item .time-info { float:left; width:25%; text-align:center; }
-  .list-group-item .item-ops { float:right; width:10%; }
+  .list-group-item .item-ops { float:right; width:12%; }
   .todo-info .checkbox-wrapper { width:10%; float: left; }
   .todo-info .checkbox-wrapper input[type=checkbox] { margin:2px 0 0; }
   .todo-info span { width:90%; float: left; display:inline-block; }
   .item-ops i { padding:1px; }
+  .add-todo-item { width:88%; }
+  .system-ops { width:12%; float:left; margin-top:5px; }
 }
 
 .list-group-item { height:auto; overflow:hidden; }
@@ -31,9 +36,8 @@ i.fa { cursor:pointer; }
 .list-group-item.selected-item span,
 .list-group-item.selected-item .time-info { text-decoration:line-through; color:#777;}
 .add-todo-item {
-  float:left; width:90%; height:24px; border:none; border-bottom:1px solid #ccc; box-shadow:none;
+  float:left; height:24px; border:none; border-bottom:1px solid #ccc; box-shadow:none;
   border-radius:0px; padding:0px;
 }
 .add-todo-item:focus { box-shadow:none; }
-.system-ops { width:10%; float:left; }
 #todoStorage { width: 100% !important; }
