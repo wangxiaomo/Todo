@@ -17,9 +17,9 @@ i.fa { cursor:pointer; }
   * { font-size:12px; }
   .app { width:100%; }
   #todo-network { display:none; }
-  .list-group-item .todo-info { float:left; width:70%; }
+  .list-group-item .todo-info { float:left; width:65%; }
   .list-group-item .time-info { float:left; width:25%; text-align:center; }
-  .list-group-item .item-ops { float:right; width:5%; }
+  .list-group-item .item-ops { float:right; width:10%; }
   .todo-info .checkbox-wrapper { width:10%; float: left; }
   .todo-info .checkbox-wrapper input[type=checkbox] { margin:2px 0 0; }
   .todo-info span { width:90%; float: left; display:inline-block; }
