@@ -27,6 +27,7 @@ i.fa { cursor:pointer; }
   .item-ops i { padding:1px; }
   .add-todo-item { width:88%; }
   .system-ops { width:12%; float:left; margin-top:5px; }
+  .right { display:none; }
 }
 
 .list-group-item { height:auto; overflow:hidden; }

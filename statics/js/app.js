@@ -120,6 +120,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     var data = $localStorage.todo,
         sortedItems = sortTodoItems(_.values(data));
     $scope.todoItems = displayPrepare(sortedItems);
+    if(window.screen.width < 601) return;
     drawTagCloud();
   };
 
