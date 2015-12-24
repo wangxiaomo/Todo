@@ -62,55 +62,11 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     }
   };
 
-  var todoItemsVisNetwork = function () {
-    if(window.screen.width < 601) return;
-    // vis todo network
-    var nodes = [
-      {id: "root", label: "ROOT"},
-    ], edges = [
-
-    ];
-
-    var items = $scope.todoItems,
-        nodeIds = [],
-        addNode = function(id, content, from) {
-          if(_.indexOf(nodeIds, id) == -1){
-            nodes.push({ id: id, label: content});
-            edges.push({ from: from, to: id});
-            nodeIds.push(id);
-          }
-        };
-    for(var i in items){
-      var item = items[i],
-          day = $filter('date')(item.timestamp, 'yyyy-MM-dd'),
-          r = getHashTagAndContent(item.content);
-      addNode(day, day, 'root');
-      addNode(day + '-' + r.tag, r.tag, day);
-      addNode(day + '-' + r.tag + '-' + r.content, r.content, day + '-' + r.tag);
-    }
-    nodes = new vis.DataSet(nodes);
-    edges = new vis.DataSet(edges);
-
-    var container = document.getElementById('todo-network'),
-      data = {
-        nodes: nodes,
-        edges: edges
-      }, options = {
-        layout: {
-          hierarchical: {
-            direction: 'LR'
-          }   
-        }
-      }, network = new vis.Network(container, data, options);
-  };
-  todoItemsVisNetwork();
-
   var syncTodoItems = function () {
     $localStorage.todo = $localStorage.todo || {};
     var data = $localStorage.todo,
         sortedItems = sortTodoItems(_.values(data));
     $scope.todoItems = displayPrepare(sortedItems);
-    todoItemsVisNetwork();
   };
 
   syncTodoItems();
