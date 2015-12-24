@@ -186,6 +186,20 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     }
   };
 
+  $scope.sound = new Howl({
+    urls: ["http://www.rainymood.com/audio1110/0.m4a"],
+    loop: true,
+  });
+  $scope.playToggle = function (e) {
+    if($(e).hasClass("fa-play")){
+      $(e).removeClass("fa-play").addClass("fa-pause");
+      $scope.sound.play();
+    }else{
+      $(e).removeClass("fa-pause").addClass("fa-play");
+      $scope.sound.pause();
+    }
+  };
+
   $("text").on("click", function(e) {
     var tag = $(this).text(),
       li = $("li.list-group-item[data-tag='" + tag + "']");

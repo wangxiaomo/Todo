@@ -18,6 +18,7 @@
   <script src="./statics/js/sjcl.js"></script>
   <script src="./statics/js/d3.min.js"></script>
   <script src="./statics/js/d3.layout.cloud.js"></script>
+  <script src="./statics/js/howler.min.js"></script>
   <script src="./statics/js/jquery.slimscroll.min.js"></script>
   <script src="./statics/js/app.js"></script>
 </head>
@@ -53,6 +54,9 @@
     </div>
   </div>
   <div class="right">
+    <div id="player">
+      <span>RainyMood<i class="fa fa-play play-toggle" data-ng-click="playToggle($event.target)"></i></span>
+    </div>
     <div id="tag-cloud"></div>
   </div>
   <!-- import/export modal dialog -->
