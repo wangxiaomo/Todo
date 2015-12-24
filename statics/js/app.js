@@ -62,11 +62,65 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     }
   };
 
+  var getTagWords = function () {
+    var items = $scope.todoItems,
+        total = items.length,
+        tags = {},
+        words = [];
+    for(var i in items){
+      var item = items[i],
+        tagAndContent = getHashTagAndContent(item.content),
+        tag = tagAndContent.tag;
+      tags[tag] = tags[tag] && tags[tag] + 1 || 1;
+    }
+    _.map(_.keys(tags), function(k) {
+      words.push({
+        text: k,
+        size: tags[k]*400/total,
+      });
+    });
+    return words;
+  };
+
+  var drawTagCloud = function () {
+    var words = getTagWords(),
+      fill = d3.scale.category20(),
+      cloud = d3.layout.cloud(),
+      draw = function(wordsList) {
+        d3.select("#tag-cloud")
+          .append("svg")
+            .attr("width", cloud.size()[0])
+            .attr("height", cloud.size()[1])
+          .append("g")
+            .attr("transform", "translate(" + cloud.size()[0] / 2 + "," + cloud.size()[1] / 2 + ")")
+          .selectAll("text")
+            .data(wordsList)
+          .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("font-family", "Impact")
+            .style("fill", function(d, i) { return fill(i); })
+            .attr("text-anchor", "middle")
+            .attr("transform", function(d) {
+              return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { console.log(d.text); return d.text; });
+      };
+    cloud.size([700, 700])
+      .words(words)
+      .padding(5)
+      .rotate(function() { return ~~(Math.random()*2)*90; })
+      .font("Impact")
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)
+      .start();
+  };
+
   var syncTodoItems = function () {
     $localStorage.todo = $localStorage.todo || {};
     var data = $localStorage.todo,
         sortedItems = sortTodoItems(_.values(data));
     $scope.todoItems = displayPrepare(sortedItems);
+    drawTagCloud();
   };
 
   syncTodoItems();
