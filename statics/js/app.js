@@ -4,24 +4,6 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
     return _.uniqueId("todo-" + _.now() + '-');
   };
 
-  var setupTestData = function (count) {
-    var items = {};
-    for(var i=0;i<count;i++){
-      var id = getItemId(),
-          insertTime = _.now(),
-          checked = _.sample([true, false]),
-          updateTime = checked && _.now() + 3600 || '';
-      items[id] = {
-        id: id,
-        insertTime: insertTime,
-        checked: checked,
-        updateTime: updateTime,
-        content: _.sample(["开会", "沟通合同", "开发功能"])
-      }
-    }
-    return items;
-  };
-
   var sortTodoItems = function (items) {
     // 1. 未完成的按照时间添加顺序排序
     // 2. 已完成的按照时间完成顺序排序
@@ -43,7 +25,10 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
 
   var displayPrepare = function (items) {
     return _.map(items, function(n){
+      var r = getHashTagAndContent(n.content),
+        tag = r.tag;
       n.timestamp = n.insertTime;
+      n.tag = tag;
       if(n.checked){
         n.dom_class = "selected-item";
         n.timestamp = n.updateTime;
@@ -103,7 +88,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
             .attr("transform", function(d) {
               return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { console.log(d.text); return d.text; });
+            .text(function(d) { return d.text; });
       };
     cloud.size([700, 700])
       .words(words)
@@ -200,4 +185,13 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
       alert("JSON format error!");
     }
   };
+
+  $("text").on("click", function(e) {
+    var tag = $(this).text(),
+      li = $("li.list-group-item[data-tag='" + tag + "']");
+    $(li).addClass("animated flash flash-red")
+      .one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){
+        $(this).removeClass("animated flash flash-red");
+      });
+  });
 });

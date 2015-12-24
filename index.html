@@ -8,6 +8,7 @@
   <link rel="bookmark" href="icon.png" />
   <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://libs.useso.com/js/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./statics/css/animate.min.css" />
   <link rel="stylesheet" href="./statics/css/app.css" />
   <script src="http://libs.useso.com/js/underscore.js/1.6.0/underscore-min.js"></script>
   <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js"></script>
@@ -32,7 +33,7 @@
           </div>
         </li>
         <li data-ng-repeat="item in todoItems"
-            class="list-group-item list-group-item-data {{item.dom_class}} item-{{item.id}}">
+            class="list-group-item list-group-item-data {{item.dom_class}} item-{{item.id}}" data-tag="{{item.tag}}">
           <div class="todo-info">
             <div class="checkbox-wrapper">
               <input type="checkbox" data-ng-model="item.checked"
