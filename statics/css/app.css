@@ -40,4 +40,4 @@ i.fa { cursor:pointer; }
 }
 .add-todo-item:focus { box-shadow:none; }
 #todoStorage { width:100% !important; }
-.flash-red { color:red; }
+.flash-red, .flash-red span, .flash-red .time-info { color:red !important; }
