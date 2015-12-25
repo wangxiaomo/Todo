@@ -187,7 +187,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
   };
 
   $scope.sound = new Howl({
-    urls: ["http://www.rainymood.com/audio1110/0.m4a"],
+    urls: ["http://todo.gaoshigao.com/0.m4a"],
     loop: true,
   });
   $scope.playToggle = function (e) {
