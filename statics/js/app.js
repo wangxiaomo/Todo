@@ -90,6 +90,7 @@ ngTodo.controller("TodoControl", function($scope, $localStorage, $filter) {
             })
             .text(function(d) { return d.text; });
       };
+    $("#tag-cloud").html("");
     cloud.size([700, 700])
       .words(words)
       .padding(5)
